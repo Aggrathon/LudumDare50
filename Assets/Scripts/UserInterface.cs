@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Tilemaps;
+using UnityEngine.EventSystems;
 
 public class UserInterface : MonoBehaviour
 {
@@ -12,6 +14,9 @@ public class UserInterface : MonoBehaviour
     public Transform infoPanel;
     public World world;
     public Camera mainCamera;
+    public EventSystem eventSystem;
+    public Overlay orderOverlay;
+    public TileBase orderMarker;
     public int incomeMult = 1000;
 
     Vector3Int lastCell;
@@ -62,6 +67,11 @@ public class UserInterface : MonoBehaviour
         if (cellPos != lastCell)
         {
             var tile = world.GetTile(cellPos);
+            if (tile == null)
+            {
+                Debug.LogWarning("Tile should not be null");
+                return;
+            }
             infoTitle.text = tile.name;
             if (world.TryGetSoil(cellPos, out World.SoilData soil))
             {
@@ -73,7 +83,41 @@ public class UserInterface : MonoBehaviour
             }
             lastCell = cellPos;
         }
-        // TODO handle orders
+        if (orderTile && !eventSystem.IsPointerOverGameObject())
+        {
+            if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0))
+            {
+                var tile = world.GetTile(cellPos);
+                if (orderTile.CanReplace(tile))
+                {
+                    world.SetTile(cellPos, orderTile);
+                }
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                OnSelectTile(orderTile);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            OnSelectTile(tiles[0]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            OnSelectTile(tiles[1]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            OnSelectTile(tiles[2]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            OnSelectTile(tiles[3]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            OnSelectTile(tiles[4]);
+        }
     }
 
     void OnSelectTile(SoilTile tile)
@@ -81,13 +125,14 @@ public class UserInterface : MonoBehaviour
         if (orderTile == tile)
         {
             orderTile = null;
-            // TODO Order Overlay
+            orderOverlay.Clear();
         }
         else
         {
             orderTile = tile;
+            orderOverlay.Filter((tile, data) => orderTile.CanReplace(tile) ? orderMarker : null);
+            lastCell.z += 100;
         }
-        Debug.Log(tile);
     }
 
     void OnTileChanged(Vector3Int pos, SoilTile tile)
@@ -95,10 +140,6 @@ public class UserInterface : MonoBehaviour
         if (pos == lastCell)
         {
             lastCell.z += 100;
-        }
-        if (orderTile)
-        {
-            // TODO: update overlay
         }
         // TODO check money
     }

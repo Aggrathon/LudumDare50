@@ -112,6 +112,10 @@ public class World : MonoBehaviour
         return tilemap.GetTile<SoilTile>(pos);
     }
 
+    public SoilData GetSoil(int x, int y)
+    {
+        return map[x, y];
+    }
     public bool TryGetSoil(int x, int y, out SoilData soil)
     {
         if (x < 0 || y < 0 || x >= width || y >= height)

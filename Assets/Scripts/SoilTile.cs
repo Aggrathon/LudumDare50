@@ -49,7 +49,7 @@ public class SoilTile : TileBase
                 Type.Growth => other.type == Type.Empty || other.type == Type.Farm,
                 Type.Farm => other.type == Type.Empty,
                 Type.Fire => other.flammable,
-                Type.Removal => other.type == Type.Growth,
+                Type.Removal => other.type == Type.Growth && other.flammable,
                 Type.Slow => other.type == Type.Empty,
                 _ => true,
             };
@@ -72,7 +72,7 @@ public class SoilTile : TileBase
             }
             else if (data.fertility <= 0.3f && start != null && start != this)
             {
-                world.SetTile(pos, next);
+                world.SetTile(pos, start);
                 return;
             }
         }
