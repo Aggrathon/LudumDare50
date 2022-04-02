@@ -14,13 +14,15 @@ public class SoilTile : TileBase
         Farm,
         Fire,
         Removal,
+        Slow,
     }
 
-    public Sprite sprite;// { get; set; }
-    public Color color = Color.white;// { get; set; }
+    public Sprite sprite;
+    public Color color = Color.white;
     public Type type;
     [Range(-1f, 1f)] public float fertilityDelta;
     public float tickTime;
+    public int cost;
     public int income;
     [Range(0f, 1f)] public float spreadChance;
     public bool flammable;
@@ -36,6 +38,27 @@ public class SoilTile : TileBase
         Vector3Int.left,
         Vector3Int.right,
     };
+
+    public bool CanReplace(SoilTile other)
+    {
+        if (other)
+        {
+            return type switch
+            {
+                Type.Empty => true,
+                Type.Growth => other.type == Type.Empty || other.type == Type.Farm,
+                Type.Farm => other.type == Type.Empty,
+                Type.Fire => other.flammable,
+                Type.Removal => other.type == Type.Growth,
+                Type.Slow => other.type == Type.Empty,
+                _ => true,
+            };
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     public void OnPlace(Vector3Int pos, World world, ref World.SoilData data)
     {
@@ -54,7 +77,12 @@ public class SoilTile : TileBase
             }
         }
         if (tickTime > 0)
-            data.time = Time.time + tickTime;
+        {
+            if (type == Type.Growth || type == Type.Farm)
+                data.time = Time.time + tickTime * (1.5f - data.fertility);
+            else
+                data.time = Time.time + tickTime;
+        }
         else
             data.time = float.MaxValue;
     }
@@ -63,24 +91,22 @@ public class SoilTile : TileBase
     {
         switch (type)
         {
-            case Type.Farm:
-            case Type.Empty:
+            case Type.Growth:
                 foreach (var n in neighbours)
                 {
                     var tile = world.GetTile(pos + n);
-                    if (tile.spreadChance > 0 && Random.value < tile.spreadChance * (1.0f + data.fertility) * 0.5f)
+                    if (CanReplace(tile) && Random.value < spreadChance)
                     {
-                        world.SetTile(pos, tile.start);
-                        break;
+                        world.SetTile(pos + n, start);
                     }
                 }
-                data.time += tickTime;
+                data.time += tickTime * (1.5f - data.fertility);
                 break;
             case Type.Fire:
                 foreach (var n in neighbours)
                 {
                     var tile = world.GetTile(pos + n);
-                    if (tile.flammable && Random.value < spreadChance)
+                    if (CanReplace(tile) && Random.value < spreadChance)
                     {
                         world.SetTile(pos + n, start);
                     }
@@ -88,10 +114,14 @@ public class SoilTile : TileBase
                 world.SetTile(pos, next);
                 break;
             case Type.Removal:
+            case Type.Slow:
+            case Type.Farm:
+                world.money += income;
                 world.SetTile(pos, next);
                 break;
         }
     }
+
     public override void GetTileData(Vector3Int location, ITilemap tilemap, ref TileData tileData)
     {
         tileData.sprite = sprite;

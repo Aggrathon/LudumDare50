@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 7482667652216324306, guid: f3848320f78980b44a8a9978eb238cdb, type: 3}
   color: {r: 0.45249674, g: 0.6037736, b: 0.1509434, a: 1}
-  type: 3
+  type: 2
   fertilityDelta: -0.15
-  tickTime: 5
-  income: 20
+  tickTime: 8
+  cost: 2
+  income: 35
   spreadChance: 0
   flammable: 1
   next: {fileID: 11400000, guid: 05f972e6c90f68b42a3852f171fc3ede, type: 2}

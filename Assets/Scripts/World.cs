@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 
 public class World : MonoBehaviour
@@ -11,6 +12,10 @@ public class World : MonoBehaviour
 
     public SoilTile emptyTile;
     public SoilTile wildTile;
+
+    public UnityEvent<Vector3Int, SoilTile> onTileChange;
+
+    public int money = -50000;
 
     float time;
     public float MapTime
@@ -23,10 +28,10 @@ public class World : MonoBehaviour
 
     public struct SoilData
     {
-        public SoilData(float minTime, float rndTime)
+        public SoilData(float rndTime)
         {
             fertility = 0.5f;
-            time = minTime + Random.value * rndTime;
+            time = Time.time + Random.value * rndTime;
         }
         public float fertility;
         public float time;
@@ -45,17 +50,31 @@ public class World : MonoBehaviour
         tilemap.BoxFill(Vector3Int.zero, wildTile, -width, -height, width, height);
         tilemap.BoxFill(Vector3Int.zero, emptyTile, -width / 2, -height / 2, width / 2, height / 2);
         map = new SoilData[width, height];
-        for (int i = 0; i < width; i++)
+        for (int i = 1; i < width - 1; i++)
         {
-            for (int j = 0; j < height; j++)
+            for (int j = 1; j < height - 1; j++)
             {
-                map[i, j] = new SoilData(0.1f, emptyTile.tickTime);
+                map[i, j] = new SoilData(emptyTile.tickTime);
             }
         }
-        SetTile(0, 0, wildTile);
-        SetTile(0, height - 1, wildTile);
-        SetTile(width - 1, 0, wildTile);
-        SetTile(width - 1, height - 1, wildTile);
+        for (int i = 0; i < width; i++)
+        {
+            SetTile(i, 0, wildTile);
+            SetTile(i, height - 1, wildTile);
+            map[i, 0] = new SoilData(wildTile.tickTime);
+            map[i, height - 1] = new SoilData(wildTile.tickTime);
+        }
+        for (int i = 1; i < height - 1; i++)
+        {
+            SetTile(0, i, wildTile);
+            SetTile(width - 1, i, wildTile);
+            map[0, i] = new SoilData(wildTile.tickTime);
+            map[width - 1, i] = new SoilData(wildTile.tickTime);
+        }
+        SetTile(1, 1, wildTile);
+        SetTile(1, height - 2, wildTile);
+        SetTile(width - 2, 1, wildTile);
+        SetTile(width - 2, height - 2, wildTile);
         time = Time.time;
     }
 
@@ -70,8 +89,13 @@ public class World : MonoBehaviour
 
     public void SetTile(int x, int y, Vector3Int pos, SoilTile tile)
     {
+        if (tile == null)
+        {
+            Debug.LogError("Tile should not be null");
+        }
         tilemap.SetTile(pos, tile);
         tile.OnPlace(pos, this, ref map[x, y]);
+        onTileChange.Invoke(pos, tile);
     }
     public void SetTile(int x, int y, SoilTile tile)
     {
@@ -122,6 +146,6 @@ public class World : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(Vector3.zero, new Vector3(width, height, 1));
+        Gizmos.DrawWireCube(Vector3.zero, new Vector3(width - 2, height - 2, 1));
     }
 }

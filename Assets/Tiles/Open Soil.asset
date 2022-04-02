@@ -16,9 +16,11 @@ MonoBehaviour:
   color: {r: 0.44313726, g: 0.2647059, b: 0.16862747, a: 1}
   type: 0
   fertilityDelta: 0
-  tickTime: 2
+  tickTime: 0
+  cost: 0
   income: 0
   spreadChance: 0
-  burnable: 0
+  flammable: 0
   next: {fileID: 11400000, guid: dbd34105a64ee6f4896d2a1994a26dbf, type: 2}
   start: {fileID: 11400000, guid: 27c8bc502368993479276d141fc50b79, type: 2}
+  description: 

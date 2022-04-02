@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 7482667652216324306, guid: f3848320f78980b44a8a9978eb238cdb, type: 3}
   color: {r: 0.7891508, g: 0.61787266, b: 0.929, a: 1}
-  type: 4
+  type: 5
   fertilityDelta: -1
   tickTime: 2
+  cost: 5
   income: 0
   spreadChance: 0
-  burnable: 0
+  flammable: 0
   next: {fileID: 11400000, guid: 05f972e6c90f68b42a3852f171fc3ede, type: 2}
   start: {fileID: 0}
   description: Poison the ground to slow down the alien weed growth

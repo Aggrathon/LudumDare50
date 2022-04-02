@@ -17,6 +17,7 @@ MonoBehaviour:
   type: 4
   fertilityDelta: -0.2
   tickTime: 5
+  cost: 5
   income: 0
   spreadChance: 0
   flammable: 1

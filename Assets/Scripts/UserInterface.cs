@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -14,7 +15,7 @@ public class UserInterface : MonoBehaviour
     public int incomeMult = 1000;
 
     Vector3Int lastCell;
-    SoilTile lastTile;
+    SoilTile orderTile;
     TextMeshProUGUI infoTitle;
     TextMeshProUGUI infoDesc;
 
@@ -50,6 +51,7 @@ public class UserInterface : MonoBehaviour
         lastCell = new Vector3Int(100, 100, 100);
         infoTitle = infoPanel.GetChild(0).GetComponent<TextMeshProUGUI>();
         infoDesc = infoPanel.GetChild(1).GetComponent<TextMeshProUGUI>();
+        world.onTileChange.AddListener(OnTileChanged);
     }
 
     void Update()
@@ -57,12 +59,11 @@ public class UserInterface : MonoBehaviour
         var screenPos = Input.mousePosition;
         var worldPos = mainCamera.ScreenToWorldPoint(screenPos);
         var cellPos = world.tilemap.WorldToCell(worldPos);
-        var tile = world.GetTile(cellPos);
-        if (cellPos != lastCell || tile != lastTile)
+        if (cellPos != lastCell)
         {
+            var tile = world.GetTile(cellPos);
             infoTitle.text = tile.name;
-            World.SoilData soil;
-            if (world.TryGetSoil(cellPos, out soil))
+            if (world.TryGetSoil(cellPos, out World.SoilData soil))
             {
                 infoDesc.text = $"Fertility: {Mathf.RoundToInt(soil.fertility * 100),3}%{(tile.flammable ? "\nFlammable" : "")}{(tile.spreadChance > 0 ? "\nSpreads" : "")}{(tile.income > 0 ? $"\nIncome: {tile.income * incomeMult,5}" : "")}";
             }
@@ -71,14 +72,44 @@ public class UserInterface : MonoBehaviour
                 infoDesc.text = "Inaccessible";
             }
             lastCell = cellPos;
-            lastTile = tile;
         }
         // TODO handle orders
     }
 
     void OnSelectTile(SoilTile tile)
     {
+        if (orderTile == tile)
+        {
+            orderTile = null;
+            // TODO Order Overlay
+        }
+        else
+        {
+            orderTile = tile;
+        }
         Debug.Log(tile);
-        // TODO start orders
+    }
+
+    void OnTileChanged(Vector3Int pos, SoilTile tile)
+    {
+        if (pos == lastCell)
+        {
+            lastCell.z += 100;
+        }
+        if (orderTile)
+        {
+            // TODO: update overlay
+        }
+        // TODO check money
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+    }
+
+    public void Mute()
+    {
+        //TODO: Mute audio
     }
 }
