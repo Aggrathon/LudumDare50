@@ -21,11 +21,12 @@ public class SoilTile : TileBase
     public Type type;
     [Range(-1f, 1f)] public float fertilityDelta;
     public float tickTime;
-    public float income;
+    public int income;
     [Range(0f, 1f)] public float spreadChance;
-    public bool burnable;
+    public bool flammable;
     public SoilTile next;
     public SoilTile start;
+    [TextArea] public string description;
 
 
 
@@ -79,7 +80,7 @@ public class SoilTile : TileBase
                 foreach (var n in neighbours)
                 {
                     var tile = world.GetTile(pos + n);
-                    if (tile.burnable && Random.value < spreadChance)
+                    if (tile.flammable && Random.value < spreadChance)
                     {
                         world.SetTile(pos + n, start);
                     }

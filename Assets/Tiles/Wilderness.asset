@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d003ae13fdebc0c42b6c8f0773be4d0e, type: 3}
-  m_Name: FertileSoil
+  m_Name: Wilderness
   m_EditorClassIdentifier: 
   sprite: {fileID: 7482667652216324306, guid: f3848320f78980b44a8a9978eb238cdb, type: 3}
-  color: {r: 0.41960785, g: 0.22339869, b: 0.10980391, a: 1}
-  type: 0
+  color: {r: 0.06256675, g: 0.3584906, b: 0.09928955, a: 1}
+  type: 2
   fertilityDelta: 0
-  tickTime: 1.5
+  tickTime: 0
   income: 0
-  spreadChance: 0
+  spreadChance: 0.12
   burnable: 0
   next: {fileID: 0}
-  start: {fileID: 0}
+  start: {fileID: 11400000, guid: e6dcfbc7a134f9e4a9f7b5064b89e0dd, type: 2}

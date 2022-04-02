@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Fire
   m_EditorClassIdentifier: 
   sprite: {fileID: 7482667652216324306, guid: f3848320f78980b44a8a9978eb238cdb, type: 3}
-  color: {r: 1, g: 0.4114134, b: 0, a: 1}
+  color: {r: 1, g: 0.6135118, b: 0, a: 1}
   type: 4
   fertilityDelta: -1
   tickTime: 1
   income: 0
   spreadChance: 0.3
   burnable: 0
-  next: {fileID: 11400000, guid: dcfba7453d0573a4b92e7bb18dc8eda0, type: 2}
-  start: {fileID: 11400000, guid: b6c2124109fd90d48aaec3bc7ce75355, type: 2}
+  next: {fileID: 11400000, guid: 134a5161001229d44b203f7915b2e039, type: 2}
+  start: {fileID: 11400000}
+  description: Start a fire to burn down the alien weeds

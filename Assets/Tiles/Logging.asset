@@ -19,6 +19,7 @@ MonoBehaviour:
   tickTime: 5
   income: 0
   spreadChance: 0
-  burnable: 0
+  flammable: 1
   next: {fileID: 11400000, guid: 05f972e6c90f68b42a3852f171fc3ede, type: 2}
   start: {fileID: 0}
+  description: Hire lumberjacks to cut down the alien weeds
