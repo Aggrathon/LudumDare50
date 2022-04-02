@@ -12,9 +12,6 @@ public class World : MonoBehaviour
     public SoilTile emptyTile;
     public SoilTile wildTile;
 
-    public float growthChance = 0.1f;
-    public float growthTick = 1.0f;
-    public float fireTick = 1.0f;
     float time;
     public float MapTime
     {
@@ -39,17 +36,20 @@ public class World : MonoBehaviour
 
     void Start()
     {
+        if (width % 2 != 1 || height % 2 != 1)
+        {
+            Debug.LogWarning("The width and/or height is even!");
+        }
         tilemap.SetTile(new Vector3Int(-width, -height), wildTile);
         tilemap.SetTile(new Vector3Int(width, height), wildTile);
         tilemap.BoxFill(Vector3Int.zero, wildTile, -width, -height, width, height);
         tilemap.BoxFill(Vector3Int.zero, emptyTile, -width / 2, -height / 2, width / 2, height / 2);
-        time = Time.time + growthTick;
         map = new SoilData[width, height];
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
             {
-                map[i, j] = new SoilData(0.1f, growthTick);
+                map[i, j] = new SoilData(0.1f, emptyTile.tickTime);
             }
         }
         SetTile(0, 0, wildTile);
@@ -71,7 +71,7 @@ public class World : MonoBehaviour
     public void SetTile(int x, int y, Vector3Int pos, SoilTile tile)
     {
         tilemap.SetTile(pos, tile);
-        tile.OnPlace(this, ref map[x, y]);
+        tile.OnPlace(pos, this, ref map[x, y]);
     }
     public void SetTile(int x, int y, SoilTile tile)
     {

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d003ae13fdebc0c42b6c8f0773be4d0e, type: 3}
-  m_Name: Smoldering
+  m_Name: Flames
   m_EditorClassIdentifier: 
   sprite: {fileID: 7482667652216324306, guid: f3848320f78980b44a8a9978eb238cdb, type: 3}
-  color: {r: 0.8392157, g: 0.30211353, b: 0, a: 1}
+  color: {r: 1, g: 0.6135118, b: 0, a: 1}
   type: 4
-  fertilityDelta: 1
+  fertilityDelta: -1
   tickTime: 1
   income: 0
-  spreadChance: 0.2
+  spreadChance: 0.3
   burnable: 0
-  next: {fileID: 11400000, guid: 05f972e6c90f68b42a3852f171fc3ede, type: 2}
-  start: {fileID: 11400000, guid: b6c2124109fd90d48aaec3bc7ce75355, type: 2}
+  next: {fileID: 11400000, guid: 134a5161001229d44b203f7915b2e039, type: 2}
+  start: {fileID: 11400000}

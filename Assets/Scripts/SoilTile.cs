@@ -10,13 +10,10 @@ public class SoilTile : TileBase
     public enum Type
     {
         Empty,
-        Wild,
         Growth,
         Farm,
         Fire,
-        Smolder,
-        Pesticide,
-        Logging,
+        Removal,
     }
 
     public Sprite sprite;// { get; set; }
@@ -39,9 +36,22 @@ public class SoilTile : TileBase
         Vector3Int.right,
     };
 
-    public void OnPlace(World world, ref World.SoilData data)
+    public void OnPlace(Vector3Int pos, World world, ref World.SoilData data)
     {
         data.fertility = Mathf.Clamp(data.fertility + fertilityDelta, 0f, 1f);
+        if (type == Type.Empty)
+        {
+            if (data.fertility >= 0.7f && next != null && next != this)
+            {
+                world.SetTile(pos, next);
+                return;
+            }
+            else if (data.fertility <= 0.3f && start != null && start != this)
+            {
+                world.SetTile(pos, next);
+                return;
+            }
+        }
         if (tickTime > 0)
             data.time = Time.time + tickTime;
         else
@@ -76,18 +86,15 @@ public class SoilTile : TileBase
                 }
                 world.SetTile(pos, next);
                 break;
-            case Type.Pesticide:
-                world.SetTile(pos, next);
-                break;
-            case Type.Logging:
+            case Type.Removal:
                 world.SetTile(pos, next);
                 break;
         }
     }
     public override void GetTileData(Vector3Int location, ITilemap tilemap, ref TileData tileData)
     {
-        tileData.sprite = this.sprite;
-        tileData.color = this.color;
+        tileData.sprite = sprite;
+        tileData.color = color;
         tileData.transform.SetTRS(Vector3.zero, Quaternion.identity, Vector3.one);
         tileData.gameObject = null;
         tileData.flags = TileFlags.LockColor;

@@ -410,18 +410,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 1721885059}
-  width: 21
+  width: 27
   height: 21
   emptyTile: {fileID: 11400000, guid: 05f972e6c90f68b42a3852f171fc3ede, type: 2}
   wildTile: {fileID: 11400000, guid: e4883330eb3286c48a6b3e745387a9c0, type: 2}
-  growthTile: {fileID: 11400000, guid: e6dcfbc7a134f9e4a9f7b5064b89e0dd, type: 2}
-  fireTile: {fileID: 11400000, guid: 134a5161001229d44b203f7915b2e039, type: 2}
-  logTile: {fileID: 0}
-  farmTile: {fileID: 0}
-  pestTile: {fileID: 0}
-  growthChance: 0.1
-  growthTick: 1
-  fireTick: 1
 --- !u!1 &1721885055
 GameObject:
   m_ObjectHideFlags: 0

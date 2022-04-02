@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Empty
   m_EditorClassIdentifier: 
   sprite: {fileID: 7482667652216324306, guid: f3848320f78980b44a8a9978eb238cdb, type: 3}
-  color: {r: 0.4433962, g: 0.2747392, b: 0.18614274, a: 1}
+  color: {r: 0.44313726, g: 0.2647059, b: 0.16862747, a: 1}
   type: 0
   fertilityDelta: 0
-  tickTime: 1
+  tickTime: 2
   income: 0
   spreadChance: 0
   burnable: 0
-  next: {fileID: 11400000, guid: e6dcfbc7a134f9e4a9f7b5064b89e0dd, type: 2}
-  start: {fileID: 0}
+  next: {fileID: 11400000, guid: dbd34105a64ee6f4896d2a1994a26dbf, type: 2}
+  start: {fileID: 11400000, guid: 27c8bc502368993479276d141fc50b79, type: 2}
