@@ -19,6 +19,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 81ffe3a444db0eb41bca32a889c1ce4c, type: 3}
   - {fileID: 21300000, guid: 969084d1f7e16644b896cd1334e10425, type: 3}
   - {fileID: 21300000, guid: 969084d1f7e16644b896cd1334e10425, type: 3}
+  - {fileID: 21300000, guid: 615807f4fadc32d4c8b31c217e69bc19, type: 3}
+  - {fileID: 21300000, guid: 661bed78b3f4c1a458c4e47c2326ae99, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   type: 1
   fertilityDelta: 0
