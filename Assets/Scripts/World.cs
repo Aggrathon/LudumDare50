@@ -128,6 +128,10 @@ public class World : MonoBehaviour
     {
         return map[x, y];
     }
+    public void SetSoil(int x, int y, SoilData value)
+    {
+        map[x, y] = value;
+    }
     public bool TryGetSoil(int x, int y, out SoilData soil)
     {
         if (x < 0 || y < 0 || x >= width || y >= height || map == null)

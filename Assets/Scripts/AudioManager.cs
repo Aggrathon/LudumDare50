@@ -16,6 +16,8 @@ public class AudioManager : MonoBehaviour
         Scratch,
         Whoosh,
         Fire,
+        Ping,
+        Hit,
     }
 
     public AudioSource soundSource3d;
@@ -29,6 +31,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] scratchSounds;
     public AudioClip[] whooshSounds;
     public AudioClip[] fireSounds;
+    public AudioClip[] pingSounds;
+    public AudioClip[] hitSounds;
 
 
     List<AudioSource> soundSources3d;
@@ -58,9 +62,12 @@ public class AudioManager : MonoBehaviour
         instance.PlaySound3d(sound, pos);
     }
 
-    public static void PlaySound(Sounds sound)
+    public static void PlaySound(Sounds sound, float delay = 0f)
     {
-        instance.PlaySound2d(sound);
+        if (delay > 0f)
+            instance.PlaySound2dDelayed(sound, delay);
+        else
+            instance.PlaySound2d(sound);
     }
 
     public void PlaySound3d(Sounds sound, Vector3 pos)
@@ -86,6 +93,18 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlaySound2dDelayed(Sounds sound, float delay)
+    {
+        var source = soundSources2d[++soundSourceIndex2d % sources];
+        var clip = GetClip(sound);
+        if (clip)
+        {
+            source.pitch = Random.Range(0.9f, 1.15f);
+            source.clip = clip;
+            source.PlayDelayed(delay);
+        }
+    }
+
     AudioClip GetClip(Sounds sound)
     {
         return sound switch
@@ -98,6 +117,8 @@ public class AudioManager : MonoBehaviour
             Sounds.Scratch => scratchSounds[Random.Range(0, scratchSounds.Length)],
             Sounds.Whoosh => whooshSounds[Random.Range(0, whooshSounds.Length)],
             Sounds.Fire => fireSounds[Random.Range(0, fireSounds.Length)],
+            Sounds.Ping => pingSounds[Random.Range(0, pingSounds.Length)],
+            Sounds.Hit => hitSounds[Random.Range(0, hitSounds.Length)],
             _ => throw new System.NotImplementedException(),
         };
     }
