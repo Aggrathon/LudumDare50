@@ -54,6 +54,7 @@ public class World : MonoBehaviour
         {
             Debug.LogWarning("The width and/or height is even!");
         }
+        tilemap.ClearAllTiles();
         tilemap.SetTile(new Vector3Int(-width, -height), wildTile);
         tilemap.SetTile(new Vector3Int(width, height), wildTile);
         tilemap.BoxFill(Vector3Int.zero, wildTile, -width, -height, width, height);

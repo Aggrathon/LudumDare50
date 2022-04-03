@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d003ae13fdebc0c42b6c8f0773be4d0e, type: 3}
   m_Name: Wilderness
   m_EditorClassIdentifier: 
-  sprite: {fileID: 7482667652216324306, guid: f3848320f78980b44a8a9978eb238cdb, type: 3}
-  color: {r: 0.06256675, g: 0.3584906, b: 0.09928955, a: 1}
+  sprite: {fileID: 21300000, guid: 3c516b7c1fea4dc4bbb3632c1e388da2, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 1}
   type: 1
   fertilityDelta: 0
   tickTime: 10
