@@ -17,9 +17,9 @@ MonoBehaviour:
   type: 3
   fertilityDelta: -1
   tickTime: 1
-  cost: 2
+  cost: 5
   income: 0
-  spreadChance: 0.4
+  spreadChance: 0.5
   flammable: 0
   next: {fileID: 11400000, guid: 134a5161001229d44b203f7915b2e039, type: 2}
   start: {fileID: 11400000}

@@ -16,7 +16,7 @@ MonoBehaviour:
   color: {r: 1, g: 0.4114134, b: 0, a: 1}
   type: 3
   fertilityDelta: -1
-  tickTime: 1
+  tickTime: 0.5
   cost: 0
   income: 0
   spreadChance: 0.35

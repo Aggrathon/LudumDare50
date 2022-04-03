@@ -17,7 +17,7 @@ public class UserInterface : MonoBehaviour
     public EventSystem eventSystem;
     public Overlay orderOverlay;
     public TileBase orderMarker;
-    public int incomeMult = 1000;
+    public int moneyMult = 1000;
 
     Vector3Int lastCell;
     SoilTile orderTile;
@@ -37,16 +37,20 @@ public class UserInterface : MonoBehaviour
         {
             var tile = tiles[i];
             var child = buttonHolder.GetChild(i);
-            var image = child.GetComponent<Image>();
+            var image = child.GetChild(0).GetChild(0).GetComponent<Image>();
             image.sprite = tile.sprite;
             image.color = tile.color;
             var button = child.GetComponent<Button>();
             button.onClick.AddListener(() => OnSelectTile(tile));
-            var text = child.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
+            var text = child.GetChild(1).GetComponentInChildren<TextMeshProUGUI>();
             text.text = tile.name;
-            var tooltip = child.GetChild(1);
-            text = tooltip.GetComponentInChildren<TextMeshProUGUI>();
-            text.text = tile.description;
+            var tooltip = child.GetChild(2);
+            string desc = tile.description;
+            if (tile.cost > 0)
+                desc += $"\n   Cost: {tile.cost * moneyMult,5}";
+            if (tile.income > 0)
+                desc += $"\nIncome: {tile.income * moneyMult,5}";
+            tooltip.GetComponentInChildren<TextMeshProUGUI>().text = desc;
             tooltip.gameObject.SetActive(false);
         }
         if (!mainCamera)
@@ -69,13 +73,12 @@ public class UserInterface : MonoBehaviour
             var tile = world.GetTile(cellPos);
             if (tile == null)
             {
-                Debug.LogWarning("Tile should not be null");
                 return;
             }
             infoTitle.text = tile.name;
             if (world.TryGetSoil(cellPos, out World.SoilData soil))
             {
-                infoDesc.text = $"Fertility: {Mathf.RoundToInt(soil.fertility * 100),3}%{(tile.flammable ? "\nFlammable" : "")}{(tile.spreadChance > 0 ? "\nSpreads" : "")}{(tile.income > 0 ? $"\nIncome: {tile.income * incomeMult,5}" : "")}";
+                infoDesc.text = $"Fertility: {Mathf.RoundToInt(soil.fertility * 100),3}%{(tile.flammable ? "\nFlammable" : "")}{(tile.spreadChance > 0 ? "\nSpreads" : "")}{(tile.income > 0 ? $"\nIncome: {tile.income * moneyMult,5}" : "")}";
             }
             else
             {
@@ -90,7 +93,16 @@ public class UserInterface : MonoBehaviour
                 var tile = world.GetTile(cellPos);
                 if (orderTile.CanReplace(tile))
                 {
-                    world.SetTile(cellPos, orderTile);
+                    if (world.Money >= orderTile.cost)
+                    {
+                        world.SetTile(cellPos, orderTile);
+                        world.Money -= orderTile.cost;
+                    }
+                    else
+                    {
+                        OnSelectTile(orderTile);
+                        // TODO boop
+                    }
                 }
             }
             if (Input.GetMouseButtonUp(0))
@@ -98,25 +110,12 @@ public class UserInterface : MonoBehaviour
                 OnSelectTile(orderTile);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        for (int i = 0; i < tiles.Count; i++)
         {
-            OnSelectTile(tiles[0]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            OnSelectTile(tiles[1]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            OnSelectTile(tiles[2]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            OnSelectTile(tiles[3]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            OnSelectTile(tiles[4]);
+            if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+            {
+                OnSelectTile(tiles[i]);
+            }
         }
     }
 
@@ -129,10 +128,18 @@ public class UserInterface : MonoBehaviour
         }
         else
         {
-            orderTile = tile;
-            orderOverlay.Filter((tile, data) => orderTile.CanReplace(tile) ? orderMarker : null);
-            lastCell.z += 100;
+            if (world.Money >= tile.cost)
+            {
+                orderTile = tile;
+                orderOverlay.Filter((tile, data) => orderTile.CanReplace(tile) ? orderMarker : null);
+                lastCell.z += 100;
+            }
+            else
+            {
+                //TODO boop
+            }
         }
+        //TODO Highlight selected order
     }
 
     void OnTileChanged(Vector3Int pos, SoilTile tile)
@@ -141,7 +148,6 @@ public class UserInterface : MonoBehaviour
         {
             lastCell.z += 100;
         }
-        // TODO check money
     }
 
     public void Restart()
@@ -149,8 +155,13 @@ public class UserInterface : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
     }
 
-    public void Mute()
+    public void Mute(bool toggle)
     {
         //TODO: Mute audio
+    }
+
+    public void Pause(bool toggle)
+    {
+        Time.timeScale = toggle ? 0.0f : 1.0f;
     }
 }

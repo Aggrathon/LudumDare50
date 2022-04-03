@@ -13,9 +13,16 @@ public class World : MonoBehaviour
     public SoilTile emptyTile;
     public SoilTile wildTile;
 
-    public UnityEvent<Vector3Int, SoilTile> onTileChange;
+    [SerializeField] int startingMoney = 10;
+    [SerializeField] int startingDebt = 50000;
+    public float interestTime = 5f;
+    public float interest = 0.02f;
+    float nextInterest;
+    public int Money { get { return startingMoney; } set { startingMoney = value; onMoneychange.Invoke(startingMoney, startingDebt); } }
+    public int Debt { get { return startingDebt; } set { startingDebt = value; onMoneychange.Invoke(startingMoney, startingDebt); } }
 
-    public int money = -50000;
+    public UnityEvent<Vector3Int, SoilTile> onTileChange;
+    public UnityEvent<int, int> onMoneychange;
 
     float time;
     public float MapTime
@@ -76,6 +83,7 @@ public class World : MonoBehaviour
         SetTile(width - 2, 1, wildTile);
         SetTile(width - 2, height - 2, wildTile);
         time = Time.time;
+        nextInterest = Time.time + interestTime * 2;
     }
 
     public (int, int) GetIndex(Vector3Int pos)
@@ -144,6 +152,11 @@ public class World : MonoBehaviour
                     tilemap.GetTile<SoilTile>(pos).OnTick(pos, this, ref map[i, j]);
                 }
             }
+        }
+        if (nextInterest < Time.time)
+        {
+            nextInterest += interestTime;
+            Debt += Mathf.RoundToInt(Debt * interest);
         }
     }
 

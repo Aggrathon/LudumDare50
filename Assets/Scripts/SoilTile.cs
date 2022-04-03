@@ -85,6 +85,7 @@ public class SoilTile : TileBase
         }
         else
             data.time = float.MaxValue;
+        // TODO sound
     }
 
     public void OnTick(Vector3Int pos, World world, ref World.SoilData data)
@@ -116,7 +117,11 @@ public class SoilTile : TileBase
             case Type.Removal:
             case Type.Slow:
             case Type.Farm:
-                world.money += income;
+                if (income > 0)
+                {
+                    world.Money += income;
+                    // TODO beep
+                }
                 world.SetTile(pos, next);
                 break;
         }
