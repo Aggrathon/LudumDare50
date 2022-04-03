@@ -12,6 +12,7 @@ public class GameOverUI : MonoBehaviour
 
     private void OnEnable()
     {
+        AudioManager.StopMusic();
         Time.timeScale = 0f;
         if (victory)
         {

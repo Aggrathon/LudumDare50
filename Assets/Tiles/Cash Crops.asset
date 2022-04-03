@@ -17,7 +17,7 @@ MonoBehaviour:
   type: 2
   fertilityDelta: -0.15
   tickTime: 12
-  cost: 4
+  cost: 5
   income: 60
   spreadChance: 0
   difficultyScaling: 0

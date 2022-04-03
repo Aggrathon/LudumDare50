@@ -22,6 +22,7 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource soundSource3d;
     public AudioSource soundSource2d;
+    public AudioSource musicSource;
     public int sources = 20;
 
     public AudioClip[] moneySounds;
@@ -121,6 +122,11 @@ public class AudioManager : MonoBehaviour
             Sounds.Hit => hitSounds[Random.Range(0, hitSounds.Length)],
             _ => throw new System.NotImplementedException(),
         };
+    }
+
+    public static void StopMusic()
+    {
+        instance.musicSource.mute = true;
     }
 
     public void Knock()

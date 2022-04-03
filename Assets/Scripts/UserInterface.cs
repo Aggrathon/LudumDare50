@@ -187,12 +187,6 @@ public class UserInterface : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
     }
 
-    public void Mute(bool toggle)
-    {
-        AudioManager.PlaySound(AudioManager.Sounds.Knock);
-        //TODO: Mute music
-    }
-
     public void Pause(bool toggle)
     {
         AudioManager.PlaySound(AudioManager.Sounds.Knock);

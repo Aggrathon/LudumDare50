@@ -3490,6 +3490,17 @@ RectTransform:
   m_AnchoredPosition: {x: 400, y: -451.89212}
   m_SizeDelta: {x: 780, y: 71.678246}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1088943448 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5929244270241051297, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
+  m_PrefabInstance: {fileID: 7533793180835461309}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1100507138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3912,6 +3923,134 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1228058396
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1228058397}
+  - component: {fileID: 1228058398}
+  m_Layer: 0
+  m_Name: SoundSourceMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1228058397
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228058396}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1480530648}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1228058398
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228058396}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 474ca8d992751524aa18734584090ec9, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1228886527
 GameObject:
   m_ObjectHideFlags: 0
@@ -4012,6 +4151,8 @@ MonoBehaviour:
   weedTile: {fileID: 11400000, guid: e6dcfbc7a134f9e4a9f7b5064b89e0dd, type: 2}
   spores: 5
   lottoAmount: 100
+  chemicalTile: {fileID: 11400000, guid: 8e9c1faf6ad75b246920a3c2a1a6d53a, type: 2}
+  leaks: 5
 --- !u!224 &1260673953 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8723728473869046135, guid: b97b6bccedfb7724da61b0a9e8c93fa5, type: 3}
@@ -5028,6 +5169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundSource3d: {fileID: 236184324}
   soundSource2d: {fileID: 2037707678}
+  musicSource: {fileID: 1228058398}
   sources: 20
   moneySounds:
   - {fileID: 8300000, guid: 967c4de83ac81874c80e18ee27eb10c4, type: 3}
@@ -5073,6 +5215,7 @@ Transform:
   m_Children:
   - {fileID: 236184325}
   - {fileID: 2037707679}
+  - {fileID: 1228058397}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8976,8 +9119,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 478765142730897271, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
       propertyPath: m_IsOn
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 478765142730897271, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 1088943448}
     - target: {fileID: 478765142730897271, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -8989,18 +9136,18 @@ PrefabInstance:
     - target: {fileID: 478765142730897271, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1355297337}
+      objectReference: {fileID: 1228058398}
     - target: {fileID: 478765142730897271, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 478765142730897271, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Mute
+      value: set_mute
       objectReference: {fileID: 0}
     - target: {fileID: 478765142730897271, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UserInterface, Assembly-CSharp
+      value: UnityEngine.AudioSource, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 478765142730897271, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -9123,17 +9270,49 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5491036831724157760, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491036831724157760, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491036831724157760, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491036831724157760, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 5166508016683531477, guid: 81c4bf0cfde109245a21635bac923a74, type: 2}
+    - target: {fileID: 5491036831724157760, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4287203721
+      objectReference: {fileID: 0}
     - target: {fileID: 5491036831724157760, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5929244270241051297, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.19607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 5929244270241051297, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.19607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 5929244270241051297, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.19607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 5929244270241051297, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 5166508016683531477, guid: 81c4bf0cfde109245a21635bac923a74, type: 2}
+    - target: {fileID: 5929244270241051297, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4281479730
+      objectReference: {fileID: 0}
     - target: {fileID: 5929244270241051297, guid: 83fc490985d4ce54cb8df2cbb78881b0, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
