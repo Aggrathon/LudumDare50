@@ -25,12 +25,11 @@ public class SoilTile : TileBase
     public int cost;
     public int income;
     [Range(0f, 1f)] public float spreadChance;
+    [Range(0f, 0.01f)] public float difficultyScaling = 0f;
     public bool flammable;
     public SoilTile next;
     public SoilTile start;
     [TextArea] public string description;
-
-
 
     static readonly Vector3Int[] neighbours = {
         Vector3Int.up,
@@ -38,6 +37,12 @@ public class SoilTile : TileBase
         Vector3Int.left,
         Vector3Int.right,
     };
+
+
+    public float CurrentSpreadChance(World world)
+    {
+        return spreadChance + difficultyScaling * world.MapTime;
+    }
 
     public bool CanReplace(SoilTile other)
     {
@@ -96,7 +101,7 @@ public class SoilTile : TileBase
                 foreach (var n in neighbours)
                 {
                     var tile = world.GetTile(pos + n);
-                    if (CanReplace(tile) && Random.value < spreadChance)
+                    if (CanReplace(tile) && Random.value < CurrentSpreadChance(world))
                     {
                         world.SetTile(pos + n, start);
                     }
@@ -107,7 +112,7 @@ public class SoilTile : TileBase
                 foreach (var n in neighbours)
                 {
                     var tile = world.GetTile(pos + n);
-                    if (CanReplace(tile) && Random.value < spreadChance)
+                    if (CanReplace(tile) && Random.value < CurrentSpreadChance(world))
                     {
                         world.SetTile(pos + n, start);
                     }

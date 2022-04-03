@@ -16,6 +16,10 @@ public class MoneyUI : MonoBehaviour
     [Range(1f, 5f)] public float warningTreshold = 1.3f;
     [Range(1f, 5f)] public float debtThreshold = 2.0f;
 
+    public GameObject gameOverDebt;
+    public GameObject gameOverMoney;
+    public GameObject gameOverVictory;
+
     int oldMoney = -1;
     int oldDebt = -1;
     int wthres;
@@ -38,6 +42,10 @@ public class MoneyUI : MonoBehaviour
             moneyText.text = (money * ui.moneyMult).ToString();
             payButton.interactable = money > payTreshold;
         }
+        if (money + world.Income < ui.MinCost)
+        {
+            gameOverMoney.SetActive(true);
+        }
         if (debt != oldDebt)
         {
             oldDebt = debt;
@@ -45,8 +53,11 @@ public class MoneyUI : MonoBehaviour
             debtWarning.SetActive(debt > wthres);
             if (debt > dthres)
             {
-                // TODO Loose
-                Debug.Log("You loose because of debt");
+                gameOverDebt.SetActive(true);
+            }
+            if (debt <= 0)
+            {
+                gameOverVictory.SetActive(true);
             }
         }
     }

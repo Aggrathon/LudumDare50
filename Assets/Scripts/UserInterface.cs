@@ -19,6 +19,8 @@ public class UserInterface : MonoBehaviour
     public TileBase orderMarker;
     public int moneyMult = 1000;
 
+    public int MinCost { get; protected set; }
+
     Vector3Int lastCell;
     SoilTile orderTile;
     TextMeshProUGUI infoTitle;
@@ -33,6 +35,7 @@ public class UserInterface : MonoBehaviour
         {
             Instantiate(prototype, Vector3.zero, Quaternion.identity, buttonHolder);
         }
+        MinCost = int.MaxValue;
         for (int i = 0; i < tiles.Count; i++)
         {
             var tile = tiles[i];
@@ -52,6 +55,7 @@ public class UserInterface : MonoBehaviour
                 desc += $"\nIncome: {tile.income * moneyMult,5}";
             tooltip.GetComponentInChildren<TextMeshProUGUI>().text = desc;
             tooltip.gameObject.SetActive(false);
+            MinCost = Mathf.Min(MinCost, tile.cost);
         }
         if (!mainCamera)
         {
@@ -78,7 +82,7 @@ public class UserInterface : MonoBehaviour
             infoTitle.text = tile.name;
             if (world.TryGetSoil(cellPos, out World.SoilData soil))
             {
-                infoDesc.text = $"Fertility: {Mathf.RoundToInt(soil.fertility * 100),3}%{(tile.flammable ? "\nFlammable" : "")}{(tile.spreadChance > 0 ? "\nSpreads" : "")}{(tile.income > 0 ? $"\nIncome: {tile.income * moneyMult,5}" : "")}";
+                infoDesc.text = $"Fertility: {Mathf.RoundToInt(soil.fertility * 100),3}%{(tile.flammable ? "\nFlammable" : "")}{(tile.spreadChance > 0 ? $"\nSpreads: {Mathf.RoundToInt(tile.CurrentSpreadChance(world) * 100)} %" : "")}{(tile.income > 0 ? $"\nIncome: {tile.income * moneyMult,5}" : "")}";
             }
             else
             {
@@ -93,7 +97,7 @@ public class UserInterface : MonoBehaviour
                 var tile = world.GetTile(cellPos);
                 if (orderTile.CanReplace(tile))
                 {
-                    if (world.Money >= orderTile.cost)
+                    if (world.Money >= orderTile.cost && world.Money + world.Income - orderTile.cost + orderTile.income > MinCost)
                     {
                         world.SetTile(cellPos, orderTile);
                         world.Money -= orderTile.cost;
@@ -125,21 +129,22 @@ public class UserInterface : MonoBehaviour
         {
             orderTile = null;
             orderOverlay.Clear();
+            buttonHolder.GetChild(tiles.IndexOf(tile)).GetChild(0).localScale = Vector3.one;
         }
         else
         {
-            if (world.Money >= tile.cost)
+            if (world.Money >= tile.cost && world.Money + world.Income - tile.cost + tile.income > MinCost)
             {
                 orderTile = tile;
                 orderOverlay.Filter((tile, data) => orderTile.CanReplace(tile) ? orderMarker : null);
                 lastCell.z += 100;
+                buttonHolder.GetChild(tiles.IndexOf(tile)).GetChild(0).localScale = Vector3.one * 1.5f;
             }
             else
             {
                 //TODO boop
             }
         }
-        //TODO Highlight selected order
     }
 
     void OnTileChanged(Vector3Int pos, SoilTile tile)
@@ -152,6 +157,7 @@ public class UserInterface : MonoBehaviour
 
     public void Restart()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
     }
 

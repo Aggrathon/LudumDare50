@@ -21,6 +21,8 @@ public class World : MonoBehaviour
     public int Money { get { return startingMoney; } set { startingMoney = value; onMoneychange.Invoke(startingMoney, startingDebt); } }
     public int Debt { get { return startingDebt; } set { startingDebt = value; onMoneychange.Invoke(startingMoney, startingDebt); } }
 
+    public int Income { get; protected set; }
+
     public UnityEvent<Vector3Int, SoilTile> onTileChange;
     public UnityEvent<int, int> onMoneychange;
 
@@ -101,6 +103,7 @@ public class World : MonoBehaviour
         {
             Debug.LogError("Tile should not be null");
         }
+        Income = Mathf.Max(1, Income + tile.income - tilemap.GetTile<SoilTile>(pos).income);
         tilemap.SetTile(pos, tile);
         tile.OnPlace(pos, this, ref map[x, y]);
         onTileChange.Invoke(pos, tile);
