@@ -30,6 +30,7 @@ public class SoilTile : TileBase
     public SoilTile next;
     public SoilTile start;
     [TextArea] public string description;
+    public AudioManager.Sounds placeSound;
 
     static readonly Vector3Int[] neighbours = {
         Vector3Int.up,
@@ -86,11 +87,11 @@ public class SoilTile : TileBase
             if (type == Type.Growth || type == Type.Farm)
                 data.time = Time.time + tickTime * (1.5f - data.fertility);
             else
-                data.time = Time.time + tickTime;
+                data.time = Time.time + tickTime * Random.Range(0.95f, 1.05f);
         }
         else
             data.time = float.MaxValue;
-        // TODO sound
+        AudioManager.PlaySound(placeSound, world.tilemap.CellToWorld(pos));
     }
 
     public void OnTick(Vector3Int pos, World world, ref World.SoilData data)
@@ -98,7 +99,7 @@ public class SoilTile : TileBase
         if (income > 0)
         {
             world.Money += income;
-            // TODO beep
+            AudioManager.PlaySound(AudioManager.Sounds.Money, world.tilemap.CellToWorld(pos));
         }
         if (spreadChance > 0)
         {

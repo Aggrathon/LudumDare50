@@ -67,8 +67,13 @@ public class MoneyUI : MonoBehaviour
         int pay = world.Money - payTreshold;
         if (pay > 0)
         {
+            AudioManager.PlaySound(AudioManager.Sounds.Knock);
             world.Money -= pay;
             world.Debt -= pay;
+        }
+        else
+        {
+            AudioManager.PlaySound(AudioManager.Sounds.Forbidden);
         }
     }
 }

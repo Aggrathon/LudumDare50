@@ -25,3 +25,4 @@ MonoBehaviour:
   next: {fileID: 11400000, guid: e0835a00a1d1989419ce932c90632ff3, type: 2}
   start: {fileID: 11400000, guid: b6c2124109fd90d48aaec3bc7ce75355, type: 2}
   description: 
+  placeSound: 7

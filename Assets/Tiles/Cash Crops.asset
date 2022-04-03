@@ -25,3 +25,4 @@ MonoBehaviour:
   next: {fileID: 11400000, guid: 05f972e6c90f68b42a3852f171fc3ede, type: 2}
   start: {fileID: 0}
   description: Plant fast growing crops that deplete the soil nutrients
+  placeSound: 5

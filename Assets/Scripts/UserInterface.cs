@@ -108,7 +108,7 @@ public class UserInterface : MonoBehaviour
                     else
                     {
                         OnSelectTile(orderTile);
-                        // TODO boop
+                        AudioManager.PlaySound(AudioManager.Sounds.Forbidden, worldPos);
                     }
                 }
             }
@@ -132,6 +132,7 @@ public class UserInterface : MonoBehaviour
         {
             orderTile = null;
             orderOverlay.Clear();
+            AudioManager.PlaySound(AudioManager.Sounds.Knock);
         }
         else
         {
@@ -140,10 +141,11 @@ public class UserInterface : MonoBehaviour
                 orderTile = tile;
                 orderOverlay.Filter((tile, data) => orderTile.CanReplace(tile) ? orderMarker : null);
                 lastCell.z += 100;
+                AudioManager.PlaySound(AudioManager.Sounds.Knock);
             }
             else
             {
-                //TODO boop
+                AudioManager.PlaySound(AudioManager.Sounds.Forbidden);
             }
         }
         EmphasizeButton();
@@ -187,11 +189,13 @@ public class UserInterface : MonoBehaviour
 
     public void Mute(bool toggle)
     {
-        //TODO: Mute audio
+        AudioManager.PlaySound(AudioManager.Sounds.Knock);
+        //TODO: Mute music
     }
 
     public void Pause(bool toggle)
     {
+        AudioManager.PlaySound(AudioManager.Sounds.Knock);
         Time.timeScale = toggle ? 0.0f : 1.0f;
     }
 }

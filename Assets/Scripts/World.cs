@@ -130,7 +130,7 @@ public class World : MonoBehaviour
     }
     public bool TryGetSoil(int x, int y, out SoilData soil)
     {
-        if (x < 0 || y < 0 || x >= width || y >= height)
+        if (x < 0 || y < 0 || x >= width || y >= height || map == null)
         {
             soil = new SoilData();
             return false;

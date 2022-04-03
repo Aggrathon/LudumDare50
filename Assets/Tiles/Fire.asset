@@ -27,3 +27,4 @@ MonoBehaviour:
   description: 'Start a fire to burn down the weeds
 
     (restores fertility)'
+  placeSound: 7

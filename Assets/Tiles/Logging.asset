@@ -16,8 +16,8 @@ MonoBehaviour:
   color: {r: 1, g: 1, b: 1, a: 1}
   type: 4
   fertilityDelta: -0.2
-  tickTime: 10
-  cost: 5
+  tickTime: 5
+  cost: 10
   income: 0
   spreadChance: 0
   difficultyScaling: 0
@@ -25,3 +25,4 @@ MonoBehaviour:
   next: {fileID: 11400000, guid: 05f972e6c90f68b42a3852f171fc3ede, type: 2}
   start: {fileID: 0}
   description: Hire lumberjacks to cut down the alien weeds
+  placeSound: 3

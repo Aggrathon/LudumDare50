@@ -12,7 +12,6 @@ public class GameOverUI : MonoBehaviour
 
     private void OnEnable()
     {
-        // TODO fanfare
         Time.timeScale = 0f;
         if (victory)
         {
