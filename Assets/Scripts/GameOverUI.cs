@@ -30,9 +30,9 @@ public class GameOverUI : MonoBehaviour
         }
         else
         {
-            float oldTime = PlayerPrefs.GetFloat("defeat", float.MaxValue);
+            float oldTime = PlayerPrefs.GetFloat("defeat", 0f);
             float newTime = world.MapTime;
-            if (newTime < oldTime)
+            if (newTime > oldTime)
             {
                 PlayerPrefs.SetFloat("defeat", newTime);
                 recordText.text = $"Your dream life lasted {Mathf.RoundToInt(newTime)} seconds! (New record!)";

@@ -55,7 +55,8 @@ public class UserInterface : MonoBehaviour
                 desc += $"\nIncome: {tile.income * moneyMult,5}";
             tooltip.GetComponentInChildren<TextMeshProUGUI>().text = desc;
             tooltip.gameObject.SetActive(false);
-            MinCost = Mathf.Min(MinCost, tile.cost);
+            if (tile.cost < tile.income)
+                MinCost = Mathf.Min(MinCost, tile.cost);
         }
         if (!mainCamera)
         {
@@ -129,7 +130,6 @@ public class UserInterface : MonoBehaviour
         {
             orderTile = null;
             orderOverlay.Clear();
-            buttonHolder.GetChild(tiles.IndexOf(tile)).GetChild(0).localScale = Vector3.one;
         }
         else
         {
@@ -138,12 +138,34 @@ public class UserInterface : MonoBehaviour
                 orderTile = tile;
                 orderOverlay.Filter((tile, data) => orderTile.CanReplace(tile) ? orderMarker : null);
                 lastCell.z += 100;
-                buttonHolder.GetChild(tiles.IndexOf(tile)).GetChild(0).localScale = Vector3.one * 1.5f;
             }
             else
             {
                 //TODO boop
             }
+        }
+        EmphasizeButton();
+    }
+
+    void EmphasizeButton()
+    {
+        if (orderTile == null)
+        {
+            for (int i = 0; i < tiles.Count; i++)
+            {
+                buttonHolder.GetChild(i).GetChild(0).localScale = Vector3.one;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < tiles.Count; i++)
+            {
+                if (tiles[i] == orderTile)
+                    buttonHolder.GetChild(i).GetChild(0).localScale = Vector3.one * 1.2f;
+                else
+                    buttonHolder.GetChild(i).GetChild(0).localScale = Vector3.one * 0.9f;
+            }
+
         }
     }
 
