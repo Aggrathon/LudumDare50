@@ -26,6 +26,9 @@ public class EventManager : MonoBehaviour
 
     [Header("Lotto")]
     public int lottoAmount = 100;
+    [Header("Leak")]
+    public SoilTile chemicalTile;
+    public int leaks = 4;
 
 
     float time;
@@ -42,7 +45,7 @@ public class EventManager : MonoBehaviour
     {
         if (Time.time > time)
         {
-            switch (Random.Range(0, 5))
+            switch (Random.Range(0, 6))
             {
                 case 0:
                     bool hit = false;
@@ -131,6 +134,26 @@ public class EventManager : MonoBehaviour
                     Message("Lotto jackpot!", "The money has been transferred to your account!");
                     AudioManager.PlaySound(AudioManager.Sounds.Money);
                     world.Money += lottoAmount;
+                    break;
+                case 5:
+                    hit = false;
+                    for (int i = 0; i < leaks; i++)
+                    {
+                        int x = Random.Range(0, world.width);
+                        int y = Random.Range(0, world.height);
+                        var pos = world.GetPos(x, y);
+                        var tile = world.GetTile(pos);
+                        if (chemicalTile.CanReplace(tile) || tile.flammable)
+                        {
+                            world.SetTile(x, y, pos, chemicalTile);
+                            AudioManager.PlaySound(AudioManager.Sounds.Whoosh, world.tilemap.CellToWorld(pos));
+                            hit = true;
+                        }
+                        if (hit)
+                            Message("Chemical Leaks!", "Watch out for puddles of pesticide!");
+                        else
+                            return;
+                    }
                     break;
             }
             time += Random.Range(minTime, maxTime);

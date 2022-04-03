@@ -68,7 +68,6 @@ public class SoilTile : TileBase
 
     public void OnPlace(Vector3Int pos, World world, ref World.SoilData data)
     {
-        data.fertility = Mathf.Clamp(data.fertility + fertilityDelta, 0f, 1f);
         if (type == Type.Empty)
         {
             if (data.fertility >= 0.7f && next != null && next != this)
@@ -91,6 +90,7 @@ public class SoilTile : TileBase
         }
         else
             data.time = float.MaxValue;
+        data.fertility = Mathf.Clamp(data.fertility + fertilityDelta, 0f, 1f);
         AudioManager.PlaySound(placeSound, world.tilemap.CellToWorld(pos));
     }
 

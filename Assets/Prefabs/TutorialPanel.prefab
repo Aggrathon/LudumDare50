@@ -39,6 +39,10 @@ PrefabInstance:
       propertyPath: m_text
       value: X
       objectReference: {fileID: 0}
+    - target: {fileID: 2511445178462915270, guid: d0cf1bee0039d7d4fab1b06e309daa6f, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5166508016683531477, guid: 81c4bf0cfde109245a21635bac923a74, type: 2}
     - target: {fileID: 3021314288637346491, guid: d0cf1bee0039d7d4fab1b06e309daa6f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -138,11 +142,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1123273056140226204, guid: 4789066e644d5b74993fad83b5a10d67, type: 3}
       propertyPath: m_Padding.m_Left
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1123273056140226204, guid: 4789066e644d5b74993fad83b5a10d67, type: 3}
       propertyPath: m_Padding.m_Right
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6098028592098010945, guid: 4789066e644d5b74993fad83b5a10d67, type: 3}
       propertyPath: m_AnchorMax.y
@@ -172,6 +176,10 @@ PrefabInstance:
       propertyPath: m_text
       value: "Make strategic \ndecisions for \nyour enterprise"
       objectReference: {fileID: 0}
+    - target: {fileID: 6098028592098010946, guid: 4789066e644d5b74993fad83b5a10d67, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5166508016683531477, guid: 81c4bf0cfde109245a21635bac923a74, type: 2}
     - target: {fileID: 6607586986282614488, guid: 4789066e644d5b74993fad83b5a10d67, type: 3}
       propertyPath: m_Name
       value: TutorialPanel
@@ -206,7 +214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8380962226474087012, guid: 4789066e644d5b74993fad83b5a10d67, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 130
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 8380962226474087012, guid: 4789066e644d5b74993fad83b5a10d67, type: 3}
       propertyPath: m_SizeDelta.y
@@ -295,6 +303,10 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 8723728473869046132, guid: b97b6bccedfb7724da61b0a9e8c93fa5, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5166508016683531477, guid: 81c4bf0cfde109245a21635bac923a74, type: 2}
     - target: {fileID: 8723728473869046132, guid: b97b6bccedfb7724da61b0a9e8c93fa5, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
