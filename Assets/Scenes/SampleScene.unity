@@ -168,7 +168,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8723728473869046132, guid: b97b6bccedfb7724da61b0a9e8c93fa5, type: 3}
       propertyPath: m_text
-      value: TODO Write the story here
+      value: "You always knew you were destined for something greater.\nOr at least
+        a greater wealth...\nSo, you decided to become an entreprenour.\n\nAfter
+        looking around for opportunities for quick success,\nyou found a great deal
+        on a farm on an\n extraterrestial planet with extraordinary lush plant life.\n\nHowever,
+        no bank was willing to give you a loan, forcing\nyou to secure funding from
+        less \"conventional\" sources.\nThe terms on the loan were not very favourable,
+        but you\nwouldn't let such trivialities stop you from realising your dreams.\n"
       objectReference: {fileID: 0}
     - target: {fileID: 8723728473869046132, guid: b97b6bccedfb7724da61b0a9e8c93fa5, type: 3}
       propertyPath: m_fontSize
@@ -1089,7 +1095,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &383262513
 RectTransform:
   m_ObjectHideFlags: 0
