@@ -95,38 +95,31 @@ public class SoilTile : TileBase
 
     public void OnTick(Vector3Int pos, World world, ref World.SoilData data)
     {
+        if (income > 0)
+        {
+            world.Money += income;
+            // TODO beep
+        }
+        if (spreadChance > 0)
+        {
+            foreach (var n in neighbours)
+            {
+                var tile = world.GetTile(pos + n);
+                if (CanReplace(tile) && Random.value < CurrentSpreadChance(world))
+                {
+                    world.SetTile(pos + n, start);
+                }
+            }
+        }
         switch (type)
         {
             case Type.Growth:
-                foreach (var n in neighbours)
-                {
-                    var tile = world.GetTile(pos + n);
-                    if (CanReplace(tile) && Random.value < CurrentSpreadChance(world))
-                    {
-                        world.SetTile(pos + n, start);
-                    }
-                }
                 data.time += tickTime * (1.5f - data.fertility);
                 break;
-            case Type.Fire:
-                foreach (var n in neighbours)
-                {
-                    var tile = world.GetTile(pos + n);
-                    if (CanReplace(tile) && Random.value < CurrentSpreadChance(world))
-                    {
-                        world.SetTile(pos + n, start);
-                    }
-                }
-                world.SetTile(pos, next);
+            case Type.Empty:
+                data.time = float.MaxValue;
                 break;
-            case Type.Removal:
-            case Type.Slow:
-            case Type.Farm:
-                if (income > 0)
-                {
-                    world.Money += income;
-                    // TODO beep
-                }
+            default:
                 world.SetTile(pos, next);
                 break;
         }

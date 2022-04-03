@@ -53,6 +53,8 @@ public class UserInterface : MonoBehaviour
                 desc += $"\n   Cost: {tile.cost * moneyMult,5}";
             if (tile.income > 0)
                 desc += $"\nIncome: {tile.income * moneyMult,5}";
+            if (tile.tickTime > 0)
+                desc += $"\nTime: {Mathf.RoundToInt(tile.tickTime)}";
             tooltip.GetComponentInChildren<TextMeshProUGUI>().text = desc;
             tooltip.gameObject.SetActive(false);
             if (tile.cost < tile.income)

@@ -17,11 +17,11 @@ MonoBehaviour:
   type: 2
   fertilityDelta: -0.15
   tickTime: 10
-  cost: 2
-  income: 35
+  cost: 4
+  income: 60
   spreadChance: 0
   difficultyScaling: 0
   flammable: 1
   next: {fileID: 11400000, guid: 05f972e6c90f68b42a3852f171fc3ede, type: 2}
   start: {fileID: 0}
-  description: Plant crops that yield huge profits when harvested
+  description: Plant fast growing crops that deplete the soil nutrients

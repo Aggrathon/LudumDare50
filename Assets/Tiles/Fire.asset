@@ -17,10 +17,13 @@ MonoBehaviour:
   type: 3
   fertilityDelta: -1
   tickTime: 1
-  cost: 5
+  cost: 2
   income: 0
   spreadChance: 0.5
+  difficultyScaling: 0
   flammable: 0
   next: {fileID: 11400000, guid: 134a5161001229d44b203f7915b2e039, type: 2}
   start: {fileID: 11400000}
-  description: Start a fire to burn down the alien weeds
+  description: 'Start a fire to burn down the weeds
+
+    (restores fertility)'
