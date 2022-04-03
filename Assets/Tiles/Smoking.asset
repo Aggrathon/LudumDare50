@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d003ae13fdebc0c42b6c8f0773be4d0e, type: 3}
   m_Name: Smoking
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: fd33c0a546d4c26408314498f5b6e7b1, type: 3}
+  sprites:
+  - {fileID: 21300000, guid: fd33c0a546d4c26408314498f5b6e7b1, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   type: 3
   fertilityDelta: 1
@@ -25,3 +26,4 @@ MonoBehaviour:
   next: {fileID: 11400000, guid: 05f972e6c90f68b42a3852f171fc3ede, type: 2}
   start: {fileID: 11400000, guid: b6c2124109fd90d48aaec3bc7ce75355, type: 2}
   description: 
+  placeSound: 0

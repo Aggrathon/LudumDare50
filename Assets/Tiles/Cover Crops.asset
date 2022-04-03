@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d003ae13fdebc0c42b6c8f0773be4d0e, type: 3}
   m_Name: Cover Crops
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 1d0d1bcc816385a4699fe5a660089b00, type: 3}
+  sprites:
+  - {fileID: 21300000, guid: 1d0d1bcc816385a4699fe5a660089b00, type: 3}
+  - {fileID: 21300000, guid: 34a7cc24cfc020b49b29c2f91812d0b1, type: 3}
+  - {fileID: 21300000, guid: b15cba6ad97c2c147b8713b8b64ba775, type: 3}
+  - {fileID: 21300000, guid: 53f1d8174260b3b488697f537a80fca0, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   type: 2
   fertilityDelta: 0.4

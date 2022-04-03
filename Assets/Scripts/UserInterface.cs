@@ -41,7 +41,7 @@ public class UserInterface : MonoBehaviour
             var tile = tiles[i];
             var child = buttonHolder.GetChild(i);
             var image = child.GetChild(0).GetChild(0).GetComponent<Image>();
-            image.sprite = tile.sprite;
+            image.sprite = tile.sprites[0];
             image.color = tile.color;
             var button = child.GetComponent<Button>();
             button.onClick.AddListener(() => OnSelectTile(tile));

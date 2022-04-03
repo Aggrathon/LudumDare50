@@ -17,7 +17,7 @@ public class SoilTile : TileBase
         Slow,
     }
 
-    public Sprite sprite;
+    public Sprite[] sprites;
     public Color color = Color.white;
     public Type type;
     [Range(-1f, 1f)] public float fertilityDelta;
@@ -128,7 +128,7 @@ public class SoilTile : TileBase
 
     public override void GetTileData(Vector3Int location, ITilemap tilemap, ref TileData tileData)
     {
-        tileData.sprite = sprite;
+        tileData.sprite = sprites[Random.Range(0, sprites.Length)];
         tileData.color = color;
         tileData.transform.SetTRS(Vector3.zero, Quaternion.identity, Vector3.one);
         tileData.gameObject = null;
@@ -153,10 +153,13 @@ public class SoilTileEditor : UnityEditor.Editor
     public override Texture2D RenderStaticPreview(string assetPath, Object[] subAssets, int width, int height)
     {
         SoilTile example = (SoilTile)target;
-        if (example == null || example.sprite == null)
+        if (example == null || example.sprites == null || example.sprites.Length == 0)
             return null;
 
-        var preview = AssetPreview.GetAssetPreview(example.sprite);
+        var preview = AssetPreview.GetAssetPreview(example.sprites[0]);
+        if (preview == null)
+            return null;
+
         Color[] pixels = preview.GetPixels();
         for (int i = 0; i < pixels.Length; i++)
         {

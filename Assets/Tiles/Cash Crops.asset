@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d003ae13fdebc0c42b6c8f0773be4d0e, type: 3}
   m_Name: Cash Crops
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: b8078de410475844798cd3eacc188bda, type: 3}
+  sprites:
+  - {fileID: 21300000, guid: b8078de410475844798cd3eacc188bda, type: 3}
+  - {fileID: 21300000, guid: 7ebae988eb1898943b80cd235155d281, type: 3}
+  - {fileID: 21300000, guid: 5ae204119bb657f41b9969051a0664c1, type: 3}
+  - {fileID: 21300000, guid: a0b6701871562234c921a4e43ae8e3c9, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   type: 2
   fertilityDelta: -0.15

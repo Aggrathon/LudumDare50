@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d003ae13fdebc0c42b6c8f0773be4d0e, type: 3}
   m_Name: Wilderness
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 3c516b7c1fea4dc4bbb3632c1e388da2, type: 3}
+  sprites:
+  - {fileID: 21300000, guid: 3c516b7c1fea4dc4bbb3632c1e388da2, type: 3}
+  - {fileID: 21300000, guid: c483c47b9c62e12458b55c1c1f99981f, type: 3}
+  - {fileID: 21300000, guid: e1277ec7b7765d742b5b513414c36011, type: 3}
+  - {fileID: 21300000, guid: 81ffe3a444db0eb41bca32a889c1ce4c, type: 3}
+  - {fileID: 21300000, guid: 969084d1f7e16644b896cd1334e10425, type: 3}
+  - {fileID: 21300000, guid: 969084d1f7e16644b896cd1334e10425, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   type: 1
   fertilityDelta: 0
@@ -25,3 +31,4 @@ MonoBehaviour:
   next: {fileID: 0}
   start: {fileID: 11400000, guid: e6dcfbc7a134f9e4a9f7b5064b89e0dd, type: 2}
   description: 
+  placeSound: 0

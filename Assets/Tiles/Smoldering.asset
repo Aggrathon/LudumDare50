@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d003ae13fdebc0c42b6c8f0773be4d0e, type: 3}
   m_Name: Smoldering
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: b3d18cca98a24154796873d158dbc572, type: 3}
+  sprites:
+  - {fileID: 21300000, guid: b3d18cca98a24154796873d158dbc572, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   type: 3
   fertilityDelta: -1

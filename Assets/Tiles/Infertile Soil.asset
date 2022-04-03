@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d003ae13fdebc0c42b6c8f0773be4d0e, type: 3}
   m_Name: Infertile Soil
   m_EditorClassIdentifier: 
-  sprite: {fileID: 7482667652216324306, guid: f3848320f78980b44a8a9978eb238cdb, type: 3}
+  sprites:
+  - {fileID: 7482667652216324306, guid: f3848320f78980b44a8a9978eb238cdb, type: 3}
   color: {r: 0.41, g: 0.3177, b: 0.26445, a: 1}
   type: 0
   fertilityDelta: 0
@@ -20,7 +21,9 @@ MonoBehaviour:
   cost: 0
   income: 0
   spreadChance: 0
+  difficultyScaling: 0
   flammable: 0
   next: {fileID: 0}
   start: {fileID: 0}
   description: 
+  placeSound: 0
