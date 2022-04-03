@@ -16,12 +16,13 @@ MonoBehaviour:
   color: {r: 1, g: 1, b: 1, a: 1}
   type: 1
   fertilityDelta: 0
-  tickTime: 7
+  tickTime: 8
   cost: 0
   income: 0
   spreadChance: 0.1
-  difficultyScaling: 0.0005
+  difficultyScaling: 0.0006
   flammable: 1
   next: {fileID: 0}
   start: {fileID: 11400000}
   description: 
+  placeSound: 0
