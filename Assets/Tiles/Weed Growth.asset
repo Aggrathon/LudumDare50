@@ -22,7 +22,7 @@ MonoBehaviour:
   cost: 0
   income: 0
   spreadChance: 0.1
-  difficultyScaling: 0.0006
+  difficultyScaling: 0.0007
   flammable: 1
   next: {fileID: 0}
   start: {fileID: 11400000}

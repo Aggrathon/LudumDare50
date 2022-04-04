@@ -20,7 +20,7 @@ MonoBehaviour:
   tickTime: 1
   cost: 0
   income: 0
-  spreadChance: 0.25
+  spreadChance: 0.3
   difficultyScaling: 0
   flammable: 0
   next: {fileID: 11400000, guid: e0835a00a1d1989419ce932c90632ff3, type: 2}

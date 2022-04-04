@@ -4138,7 +4138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e010de9e19b629146aff732a3b82e827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTime: 15
+  minTime: 12
   maxTime: 25
   world: {fileID: 1228886530}
   message: {fileID: 1440164995}
